@@ -4,11 +4,14 @@
 // </copyright>
 // -----------------------------------------------------------------------
 
+using System.Diagnostics.CodeAnalysis;
+
 namespace Pixsys.Library.Media.Common.Models
 {
     /// <summary>
     /// The image properties.
     /// </summary>
+    [SuppressMessage("StyleCop.CSharp.OrderingRules", "SA1206:DeclarationKeywordsMustFollowOrder", Justification = "Reviewed.")]
     public class ImageProperties
     {
         /// <summary>
@@ -17,7 +20,7 @@ namespace Pixsys.Library.Media.Common.Models
         /// <value>
         /// The folder.
         /// </value>
-        public DirectoryInfo? Folder { get; set; }
+        public required DirectoryInfo Folder { get; set; }
 
         /// <summary>
         /// Gets or sets the name of the file.
@@ -25,6 +28,6 @@ namespace Pixsys.Library.Media.Common.Models
         /// <value>
         /// The name of the file.
         /// </value>
-        public string? FileName { get; set; }
+        public required string FileName { get; set; }
     }
 }

@@ -41,25 +41,22 @@ namespace Pixsys.Library.Media.Common.Extensions
         public static async Task<ImageProperties> SaveImageAsync(this Image image, DirectoryInfo destinationFolder, string destinationFileName, string imageSuffix, ImageFormat format)
         {
             ImageProperties properties = ImageHelper.GetImageProperties(destinationFolder, destinationFileName, imageSuffix, format);
-            if (properties.Folder != null && !string.IsNullOrWhiteSpace(properties.FileName))
+            string path = Path.Combine(properties.Folder.FullName, properties.FileName);
+            switch (format)
             {
-                string path = Path.Combine(properties.Folder.FullName, properties.FileName);
-                switch (format)
-                {
-                    case ImageFormat.Bmp: await image.SaveAsBmpAsync(path); break;
-                    case ImageFormat.Gif: await image.SaveAsGifAsync(path); break;
-                    case ImageFormat.Jpg:
-                    case ImageFormat.Jpeg: await image.SaveAsJpegAsync(path); break;
-                    case ImageFormat.Pbm: await image.SaveAsPbmAsync(path); break;
-                    case ImageFormat.Png: await image.SaveAsPngAsync(path); break;
-                    case ImageFormat.Tga: await image.SaveAsTgaAsync(path); break;
-                    case ImageFormat.Tiff: await image.SaveAsTiffAsync(path); break;
-                    case ImageFormat.Webp: await image.SaveAsWebpAsync(path); break;
-                    default: throw new NotSupportedException("Image Format not supported");
-                }
-
-                return properties;
+                case ImageFormat.Bmp: await image.SaveAsBmpAsync(path); break;
+                case ImageFormat.Gif: await image.SaveAsGifAsync(path); break;
+                case ImageFormat.Jpg:
+                case ImageFormat.Jpeg: await image.SaveAsJpegAsync(path); break;
+                case ImageFormat.Pbm: await image.SaveAsPbmAsync(path); break;
+                case ImageFormat.Png: await image.SaveAsPngAsync(path); break;
+                case ImageFormat.Tga: await image.SaveAsTgaAsync(path); break;
+                case ImageFormat.Tiff: await image.SaveAsTiffAsync(path); break;
+                case ImageFormat.Webp: await image.SaveAsWebpAsync(path); break;
+                default: throw new NotSupportedException("Image Format not supported");
             }
+
+            return properties;
 
             throw new InvalidOperationException("Error while getting image properties.");
         }
