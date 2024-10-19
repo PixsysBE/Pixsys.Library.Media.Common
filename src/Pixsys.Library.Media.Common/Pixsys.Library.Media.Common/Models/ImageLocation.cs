@@ -1,50 +1,41 @@
 ﻿// -----------------------------------------------------------------------
-// <copyright file="ImageProperties.cs" company="Pixsys">
+// <copyright file="ImageLocation.cs" company="Pixsys">
 // Copyright (c) Pixsys. All rights reserved.
 // </copyright>
 // -----------------------------------------------------------------------
 
-using SixLabors.ImageSharp;
 using System.Diagnostics.CodeAnalysis;
 
 namespace Pixsys.Library.Media.Common.Models
 {
     /// <summary>
-    /// The image properties.
+    /// The image location.
     /// </summary>
     [SuppressMessage("StyleCop.CSharp.OrderingRules", "SA1206:DeclarationKeywordsMustFollowOrder", Justification = "Reviewed.")]
-    public class ImageProperties
+    public class ImageLocation
     {
         /// <summary>
-        /// Gets or sets the location.
+        /// Gets or sets the full path.
         /// </summary>
         /// <value>
         /// The path.
         /// </value>
-        public required ImageLocation Location { get; set; }
+        public required string FullPath { get; set; }
 
         /// <summary>
-        /// Gets the height.
+        /// Gets or sets the directory.
         /// </summary>
         /// <value>
-        /// The height.
+        /// The directory.
         /// </value>
-        public required int Height { init; get; }
+        public required DirectoryInfo Directory { get; set; }
 
         /// <summary>
-        /// Gets the width.
+        /// Gets or sets the name.
         /// </summary>
         /// <value>
-        /// The width.
+        /// The name.
         /// </value>
-        public required int Width { init; get; }
-
-        /// <summary>
-        /// Gets the size.
-        /// </summary>
-        /// <value>
-        /// The size.
-        /// </value>
-        public required Size Size { init; get; }
+        public required string Name { get; set; }
     }
 }

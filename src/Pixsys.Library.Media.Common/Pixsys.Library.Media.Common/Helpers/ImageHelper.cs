@@ -22,14 +22,11 @@ namespace Pixsys.Library.Media.Common.Helpers
         /// <param name="destinationFileName">Name of the destination file.</param>
         /// <param name="imageSuffix">The image suffix.</param>
         /// <param name="format">The format.</param>
-        /// <returns>The image output.</returns>
-        public static ImageProperties GetImageProperties(DirectoryInfo destinationFolder, string destinationFileName, string imageSuffix, ImageFormat format)
+        /// <returns>The image output properties.</returns>
+        public static ImageLocation GetImageLocation(DirectoryInfo destinationFolder, string destinationFileName, string imageSuffix, ImageFormat format)
         {
-            return new ImageProperties
-            {
-                Folder = destinationFolder,
-                FileName = string.Join(Path.GetFileNameWithoutExtension(destinationFileName), imageSuffix, format.GetExtension()),
-            };
+            string fileName = string.Join(Path.GetFileNameWithoutExtension(destinationFileName), imageSuffix, format.GetExtension());
+            return new ImageLocation { FullPath = Path.Combine(destinationFolder.FullName, fileName), Directory = destinationFolder, Name = fileName, };
         }
     }
 }
