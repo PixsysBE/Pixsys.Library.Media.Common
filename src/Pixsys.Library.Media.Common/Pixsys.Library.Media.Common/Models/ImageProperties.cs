@@ -46,5 +46,10 @@ namespace Pixsys.Library.Media.Common.Models
         /// The size.
         /// </value>
         public required Size Size { init; get; }
+
+        /// <summary>
+        /// Gets or sets the list of thumbnails linked to this image.
+        /// </summary>
+        public List<ImageProperties>? Thumbnails { get; set; }
     }
 }

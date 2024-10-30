@@ -42,7 +42,7 @@ namespace Pixsys.Library.Media.Common.Extensions
         {
             try
             {
-                ImageLocation location = ImageHelper.GetImageLocation(destinationFolder, destinationFileName, imageSuffix, format);
+                ImageLocation location = await ImageHelper.GetImageLocation(destinationFolder, destinationFileName, imageSuffix, format);
                 switch (format)
                 {
                     case ImageFormat.Bmp: await image.SaveAsBmpAsync(location.FullPath); break;

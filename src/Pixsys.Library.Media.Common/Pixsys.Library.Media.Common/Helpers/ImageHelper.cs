@@ -23,10 +23,18 @@ namespace Pixsys.Library.Media.Common.Helpers
         /// <param name="imageSuffix">The image suffix.</param>
         /// <param name="format">The format.</param>
         /// <returns>The image output properties.</returns>
-        public static ImageLocation GetImageLocation(DirectoryInfo destinationFolder, string destinationFileName, string imageSuffix, ImageFormat format)
+        public static async Task<ImageLocation> GetImageLocation(DirectoryInfo destinationFolder, string destinationFileName, string imageSuffix, ImageFormat format)
         {
-            string fileName = string.Join(Path.GetFileNameWithoutExtension(destinationFileName), imageSuffix, format.GetExtension());
-            return new ImageLocation { FullPath = Path.Combine(destinationFolder.FullName, fileName), Directory = destinationFolder, Name = fileName, };
+            return await Task.Run(() =>
+            {
+                string fileName = string.Concat(Path.GetFileNameWithoutExtension(destinationFileName), imageSuffix, format.GetExtension());
+                return new ImageLocation
+                {
+                    FullPath = Path.Combine(destinationFolder.FullName, fileName),
+                    Directory = destinationFolder,
+                    Name = fileName,
+                };
+            });
         }
     }
 }
